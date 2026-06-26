@@ -133,8 +133,8 @@ export const phases = [
  * the home document (`/`); the cahier des charges and calendrier are their own
  * routes. */
 export const navLinks = [
-  { key: "accueil", label: "Accueil", href: "/" },
-  { key: "cahier", label: "Cahier des charges", href: "/cahier-des-charges" },
-  { key: "calendrier", label: "Calendrier", href: "/calendrier" },
-  { key: "devis", label: "Devis contractuel", href: "/devis" },
+  { key: "accueil", label: "Accueil", short: "Accueil", href: "/" },
+  { key: "cahier", label: "Cahier des charges", short: "Cahier", href: "/cahier-des-charges" },
+  { key: "calendrier", label: "Calendrier", short: "Calendrier", href: "/calendrier" },
+  { key: "devis", label: "Devis contractuel", short: "Devis", href: "/devis" },
 ] as const;

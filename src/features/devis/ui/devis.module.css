@@ -135,6 +135,15 @@
   background: var(--navy);
 }
 
+/* Full nav labels on desktop; short labels swap in on mobile (see @media). */
+.navFull {
+  display: inline;
+}
+
+.navShort {
+  display: none;
+}
+
 /* ---------- Cover ---------- */
 .cover {
   position: relative;
@@ -1451,6 +1460,87 @@
 
 .footerLink:hover {
   color: var(--cyan);
+}
+
+/* ---------- Mobile (max-width 640px) ---------- */
+@media (max-width: 640px) {
+  /* Header — short nav labels so all four fit; active item is centered in JS. */
+  .headerInner {
+    gap: 8px;
+    padding: 11px 16px;
+  }
+  .nav {
+    gap: 2px;
+  }
+  .navLink {
+    padding: 6px 9px;
+    font-size: 12.5px;
+  }
+  .navFull {
+    display: none;
+  }
+  .navShort {
+    display: inline;
+  }
+
+  /* Cover */
+  .coverInner {
+    padding: clamp(44px, 11vw, 64px) 18px 38px;
+  }
+  .coverTitle {
+    font-size: clamp(30px, 8.4vw, 40px);
+  }
+  .coverBadge {
+    min-width: 0;
+    flex: 1 1 132px;
+    padding: 14px 16px;
+  }
+
+  /* Section rhythm + headers */
+  .container {
+    padding: 42px 18px;
+  }
+  .secheadBigNum {
+    font-size: 56px;
+    top: -18px;
+  }
+  .secheadTitle {
+    font-size: 23px;
+  }
+
+  /* Cards, tables, panels (Devis body) */
+  .card {
+    padding: 18px 16px;
+  }
+  .table {
+    min-width: 0;
+    font-size: 12.7px;
+  }
+  .table th,
+  .table td {
+    padding: 9px 11px;
+  }
+  .tableTotalAmount {
+    font-size: 16px;
+  }
+  .totalPanelInner {
+    padding: 22px 18px;
+  }
+  .totalValue {
+    font-size: 40px;
+  }
+  .guarantee {
+    padding: 24px 18px;
+  }
+  .signClient,
+  .signProvider {
+    padding: 18px 16px;
+  }
+
+  /* Footer */
+  .footerInner {
+    padding: clamp(44px, 12vw, 96px) 20px;
+  }
 }
 
 /* ---------- Animations ---------- */
