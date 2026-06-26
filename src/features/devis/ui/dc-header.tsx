@@ -2,18 +2,19 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { navLinks } from "./content";
 import styles from "./devis.module.css";
 
 /**
- * Sticky brand header; gains a shadow once the page is scrolled. `active` is the
- * navLinks key of the current document so its nav item is highlighted.
+ * Sticky brand header. On desktop the document nav sits inline; on mobile it
+ * collapses behind a menu button that opens a dropdown panel. `active` is the
+ * navLinks key of the current document so its item is highlighted.
  */
 export function DcHeader({ active = "devis" }: { active?: string }) {
   const [scrolled, setScrolled] = useState(false);
-  const navRef = useRef<HTMLElement>(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -22,16 +23,15 @@ export function DcHeader({ active = "devis" }: { active?: string }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // On narrow screens the nav scrolls horizontally — center the current page so
-  // the active item is never hidden off the right edge.
+  // Close the mobile menu on Escape.
   useEffect(() => {
-    const nav = navRef.current;
-    if (!nav || nav.scrollWidth <= nav.clientWidth) return;
-    nav.querySelector<HTMLElement>('[aria-current="page"]')?.scrollIntoView({
-      inline: "center",
-      block: "nearest",
-    });
-  }, []);
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <header className={cn(styles.header, scrolled && styles.headerScrolled)}>
@@ -39,7 +39,9 @@ export function DcHeader({ active = "devis" }: { active?: string }) {
         <Link href="/" className={styles.brand} aria-label="Progix — Accueil">
           <img className={styles.brandLogo} src="/progix-logo.png" alt="Progix" />
         </Link>
-        <nav ref={navRef} aria-label="Navigation principale" className={styles.nav}>
+
+        {/* Inline nav (desktop) */}
+        <nav aria-label="Navigation principale" className={styles.nav}>
           {navLinks.map((lnk) => {
             const isActive = lnk.key === active;
             return (
@@ -49,8 +51,41 @@ export function DcHeader({ active = "devis" }: { active?: string }) {
                 aria-current={isActive ? "page" : undefined}
                 className={cn(styles.navLink, isActive && styles.navLinkActive)}
               >
-                <span className={styles.navFull}>{lnk.label}</span>
-                <span className={styles.navShort}>{lnk.short}</span>
+                {lnk.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Menu button (mobile) */}
+        <button
+          type="button"
+          className={styles.menuBtn}
+          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={open}
+          aria-controls="dc-mobile-menu"
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className={cn(styles.menuBar, open && styles.menuBarTop)} aria-hidden="true" />
+          <span className={cn(styles.menuBar, open && styles.menuBarMid)} aria-hidden="true" />
+          <span className={cn(styles.menuBar, open && styles.menuBarBot)} aria-hidden="true" />
+        </button>
+      </div>
+
+      {/* Dropdown menu (mobile) */}
+      <div id="dc-mobile-menu" className={cn(styles.mobileMenu, open && styles.mobileMenuOpen)}>
+        <nav aria-label="Navigation principale" className={styles.mobileNav}>
+          {navLinks.map((lnk) => {
+            const isActive = lnk.key === active;
+            return (
+              <Link
+                key={lnk.key}
+                href={lnk.href}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(styles.mobileNavLink, isActive && styles.mobileNavLinkActive)}
+                onClick={() => setOpen(false)}
+              >
+                {lnk.label}
               </Link>
             );
           })}
