@@ -18,11 +18,12 @@ const stats4: ReadonlyArray<Stat> = [
   { n: "4+", l: "Années d’expérience" },
 ];
 
-type Leader = { nm: string; ro: string; ds: string };
+type Leader = { nm: string; ro: string; ds: string; img?: string };
 const leaders: ReadonlyArray<Leader> = [
   {
     nm: "Ilyes Ghorieb",
     ro: "Président & Fondateur",
+    img: "/team/ilyes-ghorieb.png",
     ds: "Pilote la stratégie de l’agence et la relation avec les partenaires clés. Interlocuteur direct sur les décisions structurantes et l’évolution des partenariats.",
   },
   {
@@ -33,15 +34,17 @@ const leaders: ReadonlyArray<Leader> = [
   {
     nm: "Fadi Atmania",
     ro: "Cofondateur · Développement",
+    img: "/team/fadi-atmania.jpg",
     ds: "Cofondateur de Progix. Pilote le développement commercial, les partenariats et la relation client sur la durée.",
   },
 ];
 
-type Extra = { label: string; name: string; desc: string };
+type Extra = { label: string; name: string; desc: string; img?: string };
 const extras: ReadonlyArray<Extra> = [
   {
     label: "Consultant",
     name: "Aurelio Gustave",
+    img: "/team/aurelio.jpg",
     desc: "Conseil stratégique et pilotage de projets complexes.",
   },
   {
@@ -51,7 +54,7 @@ const extras: ReadonlyArray<Extra> = [
   },
 ];
 
-type Member = { init: string; bg: string; nm: string; ro: string; tag: string };
+type Member = { init: string; bg: string; nm: string; ro: string; tag: string; img?: string };
 const team: ReadonlyArray<Member> = [
   {
     init: "KC",
@@ -61,7 +64,14 @@ const team: ReadonlyArray<Member> = [
     tag: "Python · FastAPI",
   },
   { init: "AA", bg: G_CY, nm: "Achref Arabi", ro: "Frontend Senior", tag: "React · Three.js" },
-  { init: "MB", bg: G_NV, nm: "Mohamed L. Bouhezza", ro: "Ingénieur IA", tag: "IA · Flutter" },
+  {
+    init: "MB",
+    bg: G_NV,
+    nm: "Mohamed L. Bouhezza",
+    ro: "Ingénieur IA",
+    tag: "IA · Flutter",
+    img: "/team/mohamed-bouhezza.jpg",
+  },
   {
     init: "MA",
     bg: G_CY,
@@ -75,6 +85,7 @@ const team: ReadonlyArray<Member> = [
     nm: "Khalil Cheddadi",
     ro: "Ingénierie Logiciels Complexes",
     tag: "QA · DevOps · CI/CD",
+    img: "/team/khalil-cheddadi.jpg",
   },
   {
     init: "MD",
@@ -82,6 +93,7 @@ const team: ReadonlyArray<Member> = [
     nm: "Mohamed Islem Deneche",
     ro: "Frontend Engineer",
     tag: "React · React Native",
+    img: "/team/islem-deneche.jpg",
   },
   {
     init: "HF",
@@ -89,6 +101,7 @@ const team: ReadonlyArray<Member> = [
     nm: "Houssem Ferrani",
     ro: "Full Stack Engineer",
     tag: "FastAPI · React",
+    img: "/team/houssem-ferrani.jpg",
   },
   { init: "IN", bg: G_CY, nm: "Iheb Nsiri", ro: "Backend Engineer", tag: "Spring Boot · PHP" },
 ];
@@ -238,6 +251,69 @@ const cardBase: React.CSSProperties = {
   padding: "24px",
   boxShadow: "var(--shadow)",
 };
+
+/** Two-letter initials from a name, e.g. “Ilyes Ghorieb” → “IG”. */
+function initialsOf(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  const first = parts[0]?.[0] ?? "";
+  const last = parts.length > 1 ? (parts[parts.length - 1]?.[0] ?? "") : "";
+  return (first + last).toUpperCase();
+}
+
+/** Round team avatar: real photo when available, gradient initials otherwise. */
+function Avatar({
+  img,
+  alt,
+  init,
+  bg,
+  size,
+}: {
+  img?: string;
+  alt: string;
+  init: string;
+  bg: string;
+  size: number;
+}) {
+  const base: React.CSSProperties = {
+    width: `${size}px`,
+    height: `${size}px`,
+    borderRadius: "50%",
+    flexShrink: 0,
+  };
+  if (img) {
+    return (
+      <img
+        src={img}
+        alt={alt}
+        style={{
+          ...base,
+          objectFit: "cover",
+          display: "block",
+          border: "2px solid #fff",
+          boxShadow: "var(--shadow)",
+        }}
+      />
+    );
+  }
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        ...base,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#fff",
+        fontFamily: "var(--font-disp)",
+        fontWeight: 700,
+        fontSize: `${Math.round(size * 0.32)}px`,
+        background: bg,
+      }}
+    >
+      {init}
+    </div>
+  );
+}
 
 /**
  * Accueil / Présentation — the landing page for the Progix document set. Custom
@@ -785,30 +861,48 @@ export function AccueilDocument() {
                 gap: "16px",
               }}
             >
-              {leaders.map((l) => (
+              {leaders.map((l, i) => (
                 <div key={l.nm} style={cardBase}>
                   <div
                     style={{
-                      fontFamily: "var(--font-disp)",
-                      fontWeight: 600,
-                      fontSize: "17px",
-                      color: "var(--navy)",
+                      display: "flex",
+                      gap: "14px",
+                      alignItems: "center",
+                      marginBottom: "12px",
                     }}
                   >
-                    {l.nm}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-disp)",
-                      fontSize: "11px",
-                      color: "var(--cyan-ink)",
-                      fontWeight: 600,
-                      letterSpacing: ".5px",
-                      margin: "4px 0 10px",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {l.ro}
+                    <Avatar
+                      img={l.img}
+                      alt={l.nm}
+                      init={initialsOf(l.nm)}
+                      bg={i % 2 === 0 ? G_NV : G_CY}
+                      size={54}
+                    />
+                    <div style={{ minWidth: 0 }}>
+                      <div
+                        style={{
+                          fontFamily: "var(--font-disp)",
+                          fontWeight: 600,
+                          fontSize: "17px",
+                          color: "var(--navy)",
+                        }}
+                      >
+                        {l.nm}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "var(--font-disp)",
+                          fontSize: "11px",
+                          color: "var(--cyan-ink)",
+                          fontWeight: 600,
+                          letterSpacing: ".5px",
+                          margin: "3px 0 0",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {l.ro}
+                      </div>
+                    </div>
                   </div>
                   <div style={{ fontSize: "13.6px", color: "var(--slate)", lineHeight: 1.6 }}>
                     {l.ds}
@@ -827,22 +921,28 @@ export function AccueilDocument() {
               }}
             >
               {extras.map((e) => (
-                <div key={e.name}>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-disp)",
-                      fontSize: "11px",
-                      fontWeight: 700,
-                      letterSpacing: "1px",
-                      textTransform: "uppercase",
-                      color: "var(--cyan-ink)",
-                      marginBottom: "6px",
-                    }}
-                  >
-                    {e.label}
-                  </div>
-                  <div style={{ fontSize: "14.5px", color: "var(--slate)", lineHeight: 1.55 }}>
-                    <b style={{ color: "var(--ink)", fontWeight: 600 }}>{e.name}</b> — {e.desc}
+                <div
+                  key={e.name}
+                  style={{ display: "flex", gap: "13px", alignItems: "flex-start" }}
+                >
+                  <Avatar img={e.img} alt={e.name} init={initialsOf(e.name)} bg={G_CY} size={46} />
+                  <div style={{ minWidth: 0 }}>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-disp)",
+                        fontSize: "11px",
+                        fontWeight: 700,
+                        letterSpacing: "1px",
+                        textTransform: "uppercase",
+                        color: "var(--cyan-ink)",
+                        marginBottom: "6px",
+                      }}
+                    >
+                      {e.label}
+                    </div>
+                    <div style={{ fontSize: "14.5px", color: "var(--slate)", lineHeight: 1.55 }}>
+                      <b style={{ color: "var(--ink)", fontWeight: 600 }}>{e.name}</b> — {e.desc}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -879,24 +979,7 @@ export function AccueilDocument() {
                     boxShadow: "var(--shadow)",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "48px",
-                      height: "48px",
-                      borderRadius: "50%",
-                      flexShrink: 0,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#fff",
-                      fontFamily: "var(--font-disp)",
-                      fontWeight: 700,
-                      fontSize: "15px",
-                      background: m.bg,
-                    }}
-                  >
-                    {m.init}
-                  </div>
+                  <Avatar img={m.img} alt={m.nm} init={m.init} bg={m.bg} size={48} />
                   <div style={{ minWidth: 0 }}>
                     <div
                       style={{
