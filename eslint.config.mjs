@@ -21,9 +21,6 @@ const eslintConfig = defineConfig([
     "playwright-report/**",
     "test-results/**",
     "artifacts/**",
-    // Feature packs are parked/inactive until installed via /add-feature — they
-    // live outside src and must add zero weight to the app (tsconfig also excludes them).
-    "packs/**",
   ]),
   {
     files: ["src/**/*.{ts,tsx}"],

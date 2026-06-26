@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Space_Grotesk } from "next/font/google";
 import { MotionProvider } from "@/components/motion";
+import { SiteGate } from "@/features/site-gate";
 import { site } from "@/core/site";
 import "./globals.css";
 
@@ -12,6 +13,22 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+// Brand typefaces for the Progix document (referenced as CSS variables from the
+// devis + site-gate stylesheets): Space Grotesk for display, Inter for body.
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -36,7 +53,8 @@ export const metadata: Metadata = {
     title: site.name,
     description: site.description,
   },
-  robots: { index: true, follow: true },
+  // Private, password-gated document — keep it out of search indexes.
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({
@@ -44,23 +62,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: site.name,
-    url: site.url,
-    description: site.description,
-  };
-
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        <script
-          type="application/ld+json"
-          // JSON-LD is static, app-controlled data — safe to inline.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <MotionProvider>{children}</MotionProvider>
+    <html lang="fr" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${inter.variable} font-sans antialiased`}
+      >
+        <MotionProvider>
+          <SiteGate>{children}</SiteGate>
+        </MotionProvider>
       </body>
     </html>
   );

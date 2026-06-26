@@ -4,9 +4,10 @@
  * drives canonical + Open Graph URLs).
  */
 export const site = {
-  name: "Next.js Skeleton",
-  shortName: "Skeleton",
-  description: "A production-grade Next.js starting point, built to be driven by AI agents.",
+  name: "Progix — Devis contractuel",
+  shortName: "Progix",
+  description:
+    "Devis contractuel Progix : développement de votre plateforme hôtellerie — application mobile & web, back-office, landing page et accompagnement marketing jusqu’à la mise en marché.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  locale: "en_US",
+  locale: "fr_FR",
 } as const;
