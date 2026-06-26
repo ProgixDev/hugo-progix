@@ -260,24 +260,27 @@ function initialsOf(name: string): string {
   return (first + last).toUpperCase();
 }
 
-/** Round team avatar: real photo when available, gradient initials otherwise. */
+/** Team avatar: real photo when available, gradient initials otherwise. Uses a
+ *  soft rounded square (not a tight circle) so faces stay large and legible. */
 function Avatar({
   img,
   alt,
   init,
   bg,
   size,
+  radius = "16px",
 }: {
   img?: string;
   alt: string;
   init: string;
   bg: string;
   size: number;
+  radius?: string;
 }) {
   const base: React.CSSProperties = {
     width: `${size}px`,
     height: `${size}px`,
-    borderRadius: "50%",
+    borderRadius: radius,
     flexShrink: 0,
   };
   if (img) {
@@ -288,8 +291,9 @@ function Avatar({
         style={{
           ...base,
           objectFit: "cover",
+          objectPosition: "center 28%",
           display: "block",
-          border: "2px solid #fff",
+          border: "1px solid var(--line)",
           boxShadow: "var(--shadow)",
         }}
       />
@@ -876,7 +880,8 @@ export function AccueilDocument() {
                       alt={l.nm}
                       init={initialsOf(l.nm)}
                       bg={i % 2 === 0 ? G_NV : G_CY}
-                      size={54}
+                      size={84}
+                      radius="18px"
                     />
                     <div style={{ minWidth: 0 }}>
                       <div
@@ -925,7 +930,7 @@ export function AccueilDocument() {
                   key={e.name}
                   style={{ display: "flex", gap: "13px", alignItems: "flex-start" }}
                 >
-                  <Avatar img={e.img} alt={e.name} init={initialsOf(e.name)} bg={G_CY} size={46} />
+                  <Avatar img={e.img} alt={e.name} init={initialsOf(e.name)} bg={G_CY} size={64} />
                   <div style={{ minWidth: 0 }}>
                     <div
                       style={{
@@ -961,7 +966,7 @@ export function AccueilDocument() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,230px),1fr))",
+                gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,264px),1fr))",
                 gap: "14px",
               }}
             >
@@ -979,7 +984,7 @@ export function AccueilDocument() {
                     boxShadow: "var(--shadow)",
                   }}
                 >
-                  <Avatar img={m.img} alt={m.nm} init={m.init} bg={m.bg} size={48} />
+                  <Avatar img={m.img} alt={m.nm} init={m.init} bg={m.bg} size={72} />
                   <div style={{ minWidth: 0 }}>
                     <div
                       style={{
