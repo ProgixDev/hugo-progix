@@ -7,8 +7,11 @@ import { cn } from "@/lib/utils";
 import { navLinks } from "./content";
 import styles from "./devis.module.css";
 
-/** Sticky brand header; gains a shadow once the page is scrolled. */
-export function DcHeader() {
+/**
+ * Sticky brand header; gains a shadow once the page is scrolled. `active` is the
+ * navLinks key of the current document so its nav item is highlighted.
+ */
+export function DcHeader({ active = "devis" }: { active?: string }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -26,13 +29,13 @@ export function DcHeader() {
         </Link>
         <nav aria-label="Navigation principale" className={styles.nav}>
           {navLinks.map((lnk) => {
-            const active = lnk.key === "devis";
+            const isActive = lnk.key === active;
             return (
               <Link
                 key={lnk.key}
                 href={lnk.href}
-                aria-current={active ? "page" : undefined}
-                className={cn(styles.navLink, active && styles.navLinkActive)}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(styles.navLink, isActive && styles.navLinkActive)}
               >
                 {lnk.label}
               </Link>

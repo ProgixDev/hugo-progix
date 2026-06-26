@@ -129,11 +129,12 @@ export const phases = [
   },
 ] as const;
 
-/** Header / footer navigation. Only the Devis page is implemented in this
- * frontend-only build; the others point back home until they ship. */
+/** Header / footer navigation across the document set. Accueil and the Devis are
+ * the home document (`/`); the cahier des charges and calendrier are their own
+ * routes. */
 export const navLinks = [
   { key: "accueil", label: "Accueil", href: "/" },
-  { key: "cahier", label: "Cahier des charges", href: "/" },
-  { key: "calendrier", label: "Calendrier", href: "/" },
-  { key: "devis", label: "Devis contractuel", href: "/" },
+  { key: "cahier", label: "Cahier des charges", href: "/cahier-des-charges" },
+  { key: "calendrier", label: "Calendrier", href: "/calendrier" },
+  { key: "devis", label: "Devis contractuel", href: "/devis" },
 ] as const;
