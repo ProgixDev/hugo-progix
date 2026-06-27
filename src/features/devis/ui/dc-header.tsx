@@ -36,7 +36,7 @@ export function DcHeader({ active = "devis" }: { active?: string }) {
   return (
     <header className={cn(styles.header, scrolled && styles.headerScrolled)}>
       <div className={styles.headerInner}>
-        <Link href="/" className={styles.brand} aria-label="Progix — Accueil">
+        <Link href="/" className={styles.brand} aria-label="Progix — Présentation">
           <img className={styles.brandLogo} src="/progix-logo.png" alt="Progix" />
         </Link>
 

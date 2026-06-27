@@ -369,7 +369,7 @@ export function AccueilDocument() {
               zIndex: 1,
               maxWidth: "1040px",
               margin: "0 auto",
-              padding: "clamp(70px,10vw,124px) clamp(24px,5vw,48px) clamp(108px,12vw,150px)",
+              padding: "clamp(70px,10vw,124px) clamp(24px,5vw,48px) clamp(80px,9vw,116px)",
             }}
           >
             <img
@@ -440,40 +440,6 @@ export function AccueilDocument() {
               Applications mobiles · CRM & ERP · Intelligence artificielle. Nous concevons,
               développons et accompagnons des produits qui génèrent des revenus.
             </p>
-            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "34px" }}>
-              <a
-                href="#contact"
-                style={{
-                  background: "linear-gradient(135deg,var(--indigo),var(--cyan))",
-                  color: "#fff",
-                  fontFamily: "var(--font-disp)",
-                  fontWeight: 600,
-                  fontSize: "14px",
-                  padding: "13px 26px",
-                  borderRadius: "11px",
-                  textDecoration: "none",
-                  boxShadow: "0 8px 22px rgba(91,107,240,.3)",
-                }}
-              >
-                Réserver une consultation
-              </a>
-              <a
-                href="#services"
-                style={{
-                  background: "rgba(255,255,255,.08)",
-                  border: "1px solid rgba(255,255,255,.2)",
-                  color: "#fff",
-                  fontFamily: "var(--font-disp)",
-                  fontWeight: 500,
-                  fontSize: "14px",
-                  padding: "13px 24px",
-                  borderRadius: "11px",
-                  textDecoration: "none",
-                }}
-              >
-                Découvrir nos services
-              </a>
-            </div>
           </div>
         </section>
 
