@@ -3,6 +3,7 @@ import { DcHeader } from "./dc-header";
 import { Footer } from "./footer";
 import { ScrollReveal } from "./scroll-reveal";
 import { SectionHeader } from "./primitives";
+import { ChapterBand } from "./chapter-band";
 import styles from "./devis.module.css";
 
 /* ---- Data island, lifted verbatim from the source's renderVals() ---- */
@@ -225,16 +226,12 @@ const diff: ReadonlyArray<Diff> = [
 
 const dottedSectionA: React.CSSProperties = {
   width: "100%",
-  backgroundColor: "#E8F1FB",
-  backgroundImage: "radial-gradient(rgba(20,58,107,.07) 1px,transparent 1px)",
-  backgroundSize: "24px 24px",
+  backgroundColor: "var(--band-a)",
 };
 
 const dottedSectionB: React.CSSProperties = {
   width: "100%",
-  backgroundColor: "#D6E4F4",
-  backgroundImage: "radial-gradient(rgba(20,58,107,.07) 1px,transparent 1px)",
-  backgroundSize: "24px 24px",
+  backgroundColor: "var(--band-b)",
 };
 
 const container: React.CSSProperties = {
@@ -329,15 +326,14 @@ export function AccueilDocument() {
     <div className={styles.root} data-devis-root>
       <DcHeader active="accueil" />
       <main className={styles.main}>
-        {/* HERO — custom navy cover (not the shared Cover) */}
+        {/* HERO — editorial navy cover (left-aligned, asymmetric) */}
         <section
           style={{
             position: "relative",
             color: "#EAF1F9",
             background:
-              "radial-gradient(120% 80% at 85% -10%, rgba(56,182,255,.22) 0%, rgba(56,182,255,0) 55%),linear-gradient(160deg,var(--navy-900) 0%,var(--navy) 48%,var(--navy-800) 100%)",
+              "radial-gradient(120% 90% at 92% -10%, rgba(56,182,255,.24) 0%, rgba(56,182,255,0) 52%),linear-gradient(160deg,var(--navy-900) 0%,var(--navy) 50%,var(--navy-800) 100%)",
             overflow: "hidden",
-            textAlign: "center",
             width: "100%",
           }}
         >
@@ -348,6 +344,8 @@ export function AccueilDocument() {
               inset: 0,
               backgroundImage: "radial-gradient(rgba(56,182,255,.10) 1px,transparent 1px)",
               backgroundSize: "26px 26px",
+              maskImage: "linear-gradient(180deg,#000 0%,transparent 78%)",
+              WebkitMaskImage: "linear-gradient(180deg,#000 0%,transparent 78%)",
               pointerEvents: "none",
             }}
           />
@@ -357,11 +355,11 @@ export function AccueilDocument() {
             aria-hidden="true"
             style={{
               position: "absolute",
-              left: "50%",
-              top: "50%",
-              width: "clamp(460px,56vw,900px)",
-              opacity: 0.1,
-              transform: "translate(-50%,-50%) rotate(-2deg)",
+              right: "-7%",
+              top: "46%",
+              width: "clamp(420px,46vw,760px)",
+              opacity: 0.08,
+              transform: "translateY(-50%) rotate(-3deg)",
               pointerEvents: "none",
             }}
           />
@@ -369,44 +367,51 @@ export function AccueilDocument() {
             style={{
               position: "relative",
               zIndex: 1,
-              maxWidth: "920px",
+              maxWidth: "1040px",
               margin: "0 auto",
-              padding: "clamp(80px,11vw,150px) clamp(24px,5vw,48px)",
+              padding: "clamp(70px,10vw,124px) clamp(24px,5vw,48px) clamp(108px,12vw,150px)",
             }}
           >
             <img
               src="/progix-logo.png"
               alt="Progix"
-              style={{
-                height: "36px",
-                filter: "brightness(0) invert(1)",
-                margin: "0 auto",
-                display: "block",
-              }}
+              style={{ height: "30px", filter: "brightness(0) invert(1)", display: "block" }}
             />
             <div
               style={{
-                marginTop: "26px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "10px",
+                marginTop: "30px",
                 fontFamily: "var(--font-disp)",
                 fontWeight: 600,
                 fontSize: "12px",
-                letterSpacing: "2.4px",
+                letterSpacing: "2.2px",
                 textTransform: "uppercase",
                 color: "var(--cyan)",
               }}
             >
+              <span
+                style={{
+                  width: "26px",
+                  height: "2px",
+                  background: "var(--cyan)",
+                  borderRadius: "2px",
+                  display: "inline-block",
+                }}
+              />
               Firme de développement · Montréal
             </div>
             <h1
               style={{
                 color: "#fff",
                 fontFamily: "var(--font-disp)",
-                fontSize: "clamp(34px,6vw,58px)",
+                fontSize: "clamp(37px,6.2vw,62px)",
                 fontWeight: 700,
-                letterSpacing: "-.02em",
-                margin: "16px auto 0",
-                maxWidth: "17ch",
-                lineHeight: 1.08,
+                letterSpacing: "-.025em",
+                margin: "18px 0 0",
+                maxWidth: "15ch",
+                lineHeight: 1.03,
               }}
             >
               L’ingénierie logicielle qui fait{" "}
@@ -425,29 +430,21 @@ export function AccueilDocument() {
             </h1>
             <p
               style={{
-                margin: "20px auto 0",
-                fontSize: "clamp(15px,1.8vw,17px)",
+                margin: "22px 0 0",
+                fontSize: "clamp(15px,1.8vw,18px)",
                 color: "#BCD2E6",
-                maxWidth: "50ch",
+                maxWidth: "52ch",
                 lineHeight: 1.6,
               }}
             >
               Applications mobiles · CRM & ERP · Intelligence artificielle. Nous concevons,
               développons et accompagnons des produits qui génèrent des revenus.
             </p>
-            <div
-              style={{
-                display: "flex",
-                gap: "12px",
-                justifyContent: "center",
-                flexWrap: "wrap",
-                marginTop: "32px",
-              }}
-            >
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginTop: "34px" }}>
               <a
                 href="#contact"
                 style={{
-                  background: "linear-gradient(135deg,var(--cyan-deep),var(--cyan))",
+                  background: "linear-gradient(135deg,var(--indigo),var(--cyan))",
                   color: "#fff",
                   fontFamily: "var(--font-disp)",
                   fontWeight: 600,
@@ -455,7 +452,7 @@ export function AccueilDocument() {
                   padding: "13px 26px",
                   borderRadius: "11px",
                   textDecoration: "none",
-                  boxShadow: "0 8px 22px rgba(56,182,255,.32)",
+                  boxShadow: "0 8px 22px rgba(91,107,240,.3)",
                 }}
               >
                 Réserver une consultation
@@ -480,6 +477,63 @@ export function AccueilDocument() {
           </div>
         </section>
 
+        {/* Floating proof strip — bridges the hero into the content */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 5,
+            maxWidth: "1040px",
+            margin: "-56px auto 0",
+            padding: "0 clamp(24px,5vw,48px)",
+          }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,170px),1fr))",
+              background: "#fff",
+              border: "1px solid var(--line)",
+              borderRadius: "16px",
+              boxShadow: "var(--shadow-lg)",
+              overflow: "hidden",
+            }}
+          >
+            {stats4.map((t, i) => (
+              <div
+                key={t.l}
+                style={{
+                  padding: "22px clamp(18px,2.2vw,26px)",
+                  borderLeft: i ? "1px solid var(--line-soft)" : "none",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "var(--font-disp)",
+                    fontWeight: 700,
+                    fontSize: "32px",
+                    color: "var(--navy)",
+                    letterSpacing: "-.02em",
+                    fontVariantNumeric: "tabular-nums",
+                    lineHeight: 1,
+                  }}
+                >
+                  {t.n}
+                </div>
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: "var(--muted)",
+                    marginTop: "7px",
+                    lineHeight: 1.35,
+                  }}
+                >
+                  {t.l}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* 01 — NOTRE IDENTITÉ */}
         <section data-dc-section style={dottedSectionA}>
           <div style={container}>
@@ -487,71 +541,111 @@ export function AccueilDocument() {
               num="01 — NOTRE IDENTITÉ"
               title="Un cabinet d’ingénierie, pas un atelier de code"
             />
-            <p
-              style={{
-                fontSize: "15.5px",
-                color: "var(--ink)",
-                margin: "0 0 14px",
-                lineHeight: 1.62,
-              }}
-            >
-              Progix est une firme de développement logiciel basée à{" "}
-              <strong style={{ color: "var(--ink)", fontWeight: 600 }}>Montréal</strong>. Nous
-              concevons, développons et maintenons des systèmes en production — applications
-              mobiles, plateformes web, CRM et ERP sur mesure.
-            </p>
-            <p
-              style={{
-                fontSize: "15.5px",
-                color: "var(--slate)",
-                margin: "0 0 4px",
-                lineHeight: 1.62,
-              }}
-            >
-              Nous ne livrons pas seulement du code. Nous livrons des produits qui{" "}
-              <strong style={{ color: "var(--ink)", fontWeight: 600 }}>génèrent des revenus</strong>{" "}
-              et que nous accompagnons sur la durée.
-            </p>
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,150px),1fr))",
-                gap: "1px",
-                background: "var(--line)",
-                border: "1px solid var(--line)",
-                borderRadius: "14px",
-                overflow: "hidden",
-                margin: "22px 0 0",
+                gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,320px),1fr))",
+                gap: "clamp(24px,4vw,48px)",
+                alignItems: "center",
               }}
             >
-              {stats4.map((t) => (
-                <div
-                  key={t.l}
-                  style={{ background: "#fff", padding: "22px 16px", textAlign: "center" }}
+              <div>
+                <p
+                  style={{
+                    fontSize: "16px",
+                    color: "var(--ink)",
+                    margin: "0 0 14px",
+                    lineHeight: 1.64,
+                  }}
                 >
-                  <div
-                    style={{
-                      fontFamily: "var(--font-disp)",
-                      fontWeight: 700,
-                      fontSize: "30px",
-                      color: "var(--navy)",
-                      letterSpacing: "-.02em",
-                    }}
-                  >
-                    {t.n}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "12px",
-                      color: "var(--muted)",
-                      marginTop: "5px",
-                      lineHeight: 1.35,
-                    }}
-                  >
-                    {t.l}
-                  </div>
+                  Progix est une firme de développement logiciel basée à{" "}
+                  <strong style={{ color: "var(--ink)", fontWeight: 600 }}>Montréal</strong>. Nous
+                  concevons, développons et maintenons des systèmes en production — applications
+                  mobiles, plateformes web, CRM et ERP sur mesure.
+                </p>
+                <p style={{ fontSize: "15px", color: "var(--slate)", margin: 0, lineHeight: 1.64 }}>
+                  Nous ne livrons pas seulement du code. Nous livrons des produits qui{" "}
+                  <strong style={{ color: "var(--ink)", fontWeight: 600 }}>
+                    génèrent des revenus
+                  </strong>{" "}
+                  et que nous accompagnons sur la durée.
+                </p>
+              </div>
+              <figure
+                style={{
+                  position: "relative",
+                  margin: 0,
+                  background: "linear-gradient(155deg,var(--navy-900),var(--navy))",
+                  color: "#EAF1F9",
+                  borderRadius: "18px",
+                  padding: "30px 32px 26px",
+                  boxShadow: "var(--shadow-lg)",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    backgroundImage: "radial-gradient(rgba(56,182,255,.10) 1px,transparent 1px)",
+                    backgroundSize: "22px 22px",
+                    pointerEvents: "none",
+                  }}
+                />
+                <div
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    top: "-30px",
+                    left: "22px",
+                    fontFamily: "var(--font-disp)",
+                    fontSize: "120px",
+                    lineHeight: 1,
+                    fontWeight: 700,
+                    color: "rgba(56,182,255,.18)",
+                  }}
+                >
+                  “
                 </div>
-              ))}
+                <blockquote
+                  style={{
+                    position: "relative",
+                    margin: "24px 0 0",
+                    fontFamily: "var(--font-disp)",
+                    fontWeight: 500,
+                    fontSize: "20px",
+                    lineHeight: 1.42,
+                    letterSpacing: "-.01em",
+                    color: "#fff",
+                  }}
+                >
+                  Un produit qui ne génère pas de revenus n’est pas livré — il est seulement écrit.
+                </blockquote>
+                <figcaption
+                  style={{
+                    position: "relative",
+                    marginTop: "18px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    fontFamily: "var(--font-disp)",
+                    fontSize: "12px",
+                    letterSpacing: ".4px",
+                    color: "var(--cyan)",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "22px",
+                      height: "2px",
+                      background: "var(--cyan)",
+                      display: "inline-block",
+                    }}
+                  />
+                  La conviction Progix
+                </figcaption>
+              </figure>
             </div>
           </div>
         </section>
@@ -1027,6 +1121,19 @@ export function AccueilDocument() {
           </div>
         </section>
 
+        <ChapterBand
+          eyebrow="Notre approche"
+          title="Un partenaire,"
+          titleAccent="pas un prestataire."
+          sub="L’expertise d’une équipe senior et un accompagnement business complet, du cadrage jusqu’au lancement — au prix d’un lancement, pas d’une ESN."
+          stats={[
+            { n: "100", u: "%", l: "Propriété du code, transférée à chaque sprint" },
+            { n: "24", u: "h", l: "Délai de réponse garanti" },
+            { n: "90", u: "j", l: "Accompagnement marketing inclus" },
+            { n: "5–10", u: "ans", l: "Conçu pour durer" },
+          ]}
+        />
+
         {/* 05 — TECHNOLOGIES */}
         <section data-dc-section style={dottedSectionA}>
           <div style={container}>
@@ -1135,6 +1242,8 @@ export function AccueilDocument() {
                 <div
                   key={st.num}
                   style={{
+                    position: "relative",
+                    overflow: "hidden",
                     background: "linear-gradient(180deg,#fff,#EDF4FF)",
                     border: "1px solid #D6E3F1",
                     borderRadius: "14px",
@@ -1142,8 +1251,26 @@ export function AccueilDocument() {
                     boxShadow: "var(--shadow)",
                   }}
                 >
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      position: "absolute",
+                      top: "-16px",
+                      right: "8px",
+                      fontFamily: "var(--font-disp)",
+                      fontWeight: 700,
+                      fontSize: "78px",
+                      lineHeight: 1,
+                      color: "rgba(91,107,240,.07)",
+                      WebkitTextStroke: "1px rgba(91,107,240,.15)",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    {st.num}
+                  </span>
                   <div
                     style={{
+                      position: "relative",
                       width: "34px",
                       height: "34px",
                       borderRadius: "10px",
@@ -1249,6 +1376,142 @@ export function AccueilDocument() {
               title="Des projets qui génèrent des résultats"
               lead="Ils nous ont fait confiance — applications, plateformes, CRM et ERP livrés et en production."
             />
+            {portfolio[0] ? (
+              <article
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,300px),1fr))",
+                  background: "linear-gradient(180deg,#fff,#EDF4FF)",
+                  border: "1px solid #D6E3F1",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  boxShadow: "var(--shadow-lg)",
+                  marginBottom: "16px",
+                }}
+              >
+                <div
+                  style={{
+                    position: "relative",
+                    minHeight: "210px",
+                    background: "linear-gradient(150deg,var(--navy-900),var(--navy-700))",
+                    display: "flex",
+                    alignItems: "flex-end",
+                    padding: "26px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      backgroundImage: "radial-gradient(rgba(56,182,255,.14) 1px,transparent 1px)",
+                      backgroundSize: "22px 22px",
+                    }}
+                  />
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: "absolute",
+                      right: "-50px",
+                      top: "-50px",
+                      width: "210px",
+                      height: "210px",
+                      borderRadius: "50%",
+                      background: "radial-gradient(circle,rgba(56,182,255,.4),transparent 68%)",
+                    }}
+                  />
+                  <div style={{ position: "relative" }}>
+                    <span
+                      style={{
+                        display: "inline-block",
+                        fontFamily: "var(--font-disp)",
+                        fontSize: "10.5px",
+                        fontWeight: 700,
+                        letterSpacing: "1px",
+                        textTransform: "uppercase",
+                        color: "var(--navy-900)",
+                        background: "var(--cyan)",
+                        borderRadius: "999px",
+                        padding: "4px 11px",
+                      }}
+                    >
+                      Projet phare
+                    </span>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-disp)",
+                        fontWeight: 700,
+                        fontSize: "27px",
+                        letterSpacing: "-.02em",
+                        color: "#fff",
+                        marginTop: "12px",
+                      }}
+                    >
+                      {portfolio[0].nm}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    padding: "28px clamp(24px,3vw,34px)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: "var(--font-disp)",
+                      fontSize: "11px",
+                      color: "var(--cyan-ink)",
+                      fontWeight: 600,
+                      letterSpacing: ".8px",
+                      textTransform: "uppercase",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    {portfolio[0].cat}
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "15px",
+                      color: "var(--slate)",
+                      margin: "0 0 18px",
+                      lineHeight: 1.62,
+                    }}
+                  >
+                    {portfolio[0].p}
+                  </p>
+                  <div style={{ display: "flex", gap: "28px", flexWrap: "wrap" }}>
+                    {[
+                      { v: "100 %", l: "des revenus conservés" },
+                      { v: "iOS · Android", l: "publié sur les stores" },
+                    ].map((s) => (
+                      <div key={s.l}>
+                        <div
+                          style={{
+                            fontFamily: "var(--font-disp)",
+                            fontWeight: 700,
+                            fontSize: "18px",
+                            color: "var(--navy)",
+                            letterSpacing: "-.01em",
+                            fontVariantNumeric: "tabular-nums",
+                          }}
+                        >
+                          {s.v}
+                        </div>
+                        <div
+                          style={{ fontSize: "11.5px", color: "var(--muted)", marginTop: "3px" }}
+                        >
+                          {s.l}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ) : null}
             <div
               style={{
                 display: "grid",
@@ -1256,7 +1519,7 @@ export function AccueilDocument() {
                 gap: "16px",
               }}
             >
-              {portfolio.map((p) => (
+              {portfolio.slice(1).map((p) => (
                 <div
                   key={p.nm}
                   style={{

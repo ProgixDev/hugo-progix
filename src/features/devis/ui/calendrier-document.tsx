@@ -4,6 +4,7 @@ import { DownloadFab } from "./download-fab";
 import { Footer } from "./footer";
 import { ScrollReveal } from "./scroll-reveal";
 import { SectionHeader } from "./primitives";
+import { ChapterBand } from "./chapter-band";
 import styles from "./devis.module.css";
 
 /* ---------- Cover data (from the renderVals() island) ---------- */
@@ -293,9 +294,7 @@ export function CalendrierDocument() {
           data-dc-section
           style={{
             width: "100%",
-            backgroundColor: "#E8F1FB",
-            backgroundImage: "radial-gradient(rgba(20,58,107,.07) 1px,transparent 1px)",
-            backgroundSize: "24px 24px",
+            backgroundColor: "var(--band-a)",
           }}
         >
           <div
@@ -597,15 +596,20 @@ export function CalendrierDocument() {
           </div>
         </section>
 
+        <ChapterBand
+          eyebrow="Méthode"
+          title="Itératif, validé"
+          titleAccent="à chaque étape."
+          sub="Vous validez chaque sprint via TestFlight ou APK lors d’un point hebdomadaire — la livraison finale ne réserve aucune surprise."
+        />
+
         {/* 02 — DÉTAIL */}
         <section
           id="s2"
           data-dc-section
           style={{
             width: "100%",
-            backgroundColor: "#D6E4F4",
-            backgroundImage: "radial-gradient(rgba(20,58,107,.07) 1px,transparent 1px)",
-            backgroundSize: "24px 24px",
+            backgroundColor: "var(--band-b)",
           }}
         >
           <div
@@ -891,9 +895,7 @@ export function CalendrierDocument() {
           data-dc-section
           style={{
             width: "100%",
-            backgroundColor: "#E8F1FB",
-            backgroundImage: "radial-gradient(rgba(20,58,107,.07) 1px,transparent 1px)",
-            backgroundSize: "24px 24px",
+            backgroundColor: "var(--band-a)",
           }}
         >
           <div
@@ -1050,9 +1052,7 @@ export function CalendrierDocument() {
           data-dc-section
           style={{
             width: "100%",
-            backgroundColor: "#D6E4F4",
-            backgroundImage: "radial-gradient(rgba(20,58,107,.07) 1px,transparent 1px)",
-            backgroundSize: "24px 24px",
+            backgroundColor: "var(--band-b)",
           }}
         >
           <div

@@ -5,6 +5,7 @@ import { DownloadFab } from "./download-fab";
 import { Footer } from "./footer";
 import { ScrollReveal } from "./scroll-reveal";
 import { SectionHeader } from "./primitives";
+import { ChapterBand } from "./chapter-band";
 import styles from "./devis.module.css";
 
 /* ------------------------------------------------------------------ */
@@ -13,8 +14,6 @@ import styles from "./devis.module.css";
 
 const SECTION_DOTS: CSSProperties = {
   width: "100%",
-  backgroundImage: "radial-gradient(rgba(20,58,107,.07) 1px,transparent 1px)",
-  backgroundSize: "24px 24px",
 };
 
 const CONTAINER: CSSProperties = {
@@ -669,7 +668,7 @@ export function CahierDocument() {
         />
 
         {/* SOMMAIRE */}
-        <section data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#E8F1FB" }}>
+        <section data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "var(--band-a)" }}>
           <div style={CONTAINER}>
             <span
               style={{
@@ -781,7 +780,11 @@ export function CahierDocument() {
         </section>
 
         {/* 01 — CONTEXTE */}
-        <section id="s1" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#D6E4F4" }}>
+        <section
+          id="s1"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-b)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="01 — CONTEXTE"
@@ -1009,7 +1012,11 @@ export function CahierDocument() {
         </section>
 
         {/* 02 — OBJECTIFS */}
-        <section id="s2" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#E8F1FB" }}>
+        <section
+          id="s2"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-a)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader num="02 — OBJECTIFS" title="Objectifs du projet" />
             <div style={GRID_AUTO}>
@@ -1040,7 +1047,11 @@ export function CahierDocument() {
         </section>
 
         {/* 03 — UTILISATEURS */}
-        <section id="s3" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#D6E4F4" }}>
+        <section
+          id="s3"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-b)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="03 — UTILISATEURS"
@@ -1101,7 +1112,11 @@ export function CahierDocument() {
         </section>
 
         {/* 04 — MODÈLE ÉCONOMIQUE */}
-        <section id="s4" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#E8F1FB" }}>
+        <section
+          id="s4"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-a)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="04 — MODÈLE ÉCONOMIQUE"
@@ -1198,7 +1213,11 @@ export function CahierDocument() {
         </section>
 
         {/* 05 — PÉRIMÈTRE FONCTIONNEL */}
-        <section id="s5" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#D6E4F4" }}>
+        <section
+          id="s5"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-b)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="05 — PÉRIMÈTRE FONCTIONNEL"
@@ -1342,8 +1361,19 @@ export function CahierDocument() {
           </div>
         </section>
 
+        <ChapterBand
+          eyebrow="Le différenciateur"
+          title="La confiance se construit"
+          titleAccent="dans l’application."
+          sub="Certification métier, score de fiabilité et notation à double sens : un capital qui n’existe qu’à l’intérieur de la plateforme — et qui fidélise naturellement les deux parties."
+        />
+
         {/* 06 — PARCOURS */}
-        <section id="s6" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#E8F1FB" }}>
+        <section
+          id="s6"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-a)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader num="06 — PARCOURS" title="Parcours utilisateurs clés" />
             <JourneyHeading letter="A">Le professionnel (candidat)</JourneyHeading>
@@ -1402,7 +1432,11 @@ export function CahierDocument() {
         </section>
 
         {/* 07 — TECHNIQUE */}
-        <section id="s7" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#D6E4F4" }}>
+        <section
+          id="s7"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-b)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="07 — TECHNIQUE"
@@ -1594,7 +1628,11 @@ export function CahierDocument() {
         </section>
 
         {/* 08 — SÉCURITÉ & CONFORMITÉ */}
-        <section id="s8" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#E8F1FB" }}>
+        <section
+          id="s8"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-a)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="08 — SÉCURITÉ & CONFORMITÉ"
@@ -1631,7 +1669,11 @@ export function CahierDocument() {
         </section>
 
         {/* 09 — LIVRABLES */}
-        <section id="s9" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#D6E4F4" }}>
+        <section
+          id="s9"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-b)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader num="09 — LIVRABLES" title="Livrables & publication" />
             <div
@@ -1737,7 +1779,11 @@ export function CahierDocument() {
         </section>
 
         {/* 10 — ÉVOLUTIONS */}
-        <section id="s10" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#E8F1FB" }}>
+        <section
+          id="s10"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-a)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="10 — ÉVOLUTIONS"
@@ -1780,7 +1826,11 @@ export function CahierDocument() {
         </section>
 
         {/* 11 — ACCOMPAGNEMENT */}
-        <section id="s11" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#D6E4F4" }}>
+        <section
+          id="s11"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-b)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="11 — ACCOMPAGNEMENT"
@@ -1984,7 +2034,11 @@ export function CahierDocument() {
         </section>
 
         {/* 12 — DÉMARCHE */}
-        <section id="s12" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#E8F1FB" }}>
+        <section
+          id="s12"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-a)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="12 — DÉMARCHE"
@@ -2089,7 +2143,11 @@ export function CahierDocument() {
         </section>
 
         {/* 13 — PRÉREQUIS */}
-        <section id="s13" data-dc-section style={{ ...SECTION_DOTS, backgroundColor: "#D6E4F4" }}>
+        <section
+          id="s13"
+          data-dc-section
+          style={{ ...SECTION_DOTS, backgroundColor: "var(--band-b)" }}
+        >
           <div style={CONTAINER}>
             <SectionHeader
               num="13 — PRÉREQUIS"

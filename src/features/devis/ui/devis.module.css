@@ -28,17 +28,28 @@
   --amber-bg: #fdf3e3;
   --ok: #0f9d6b;
   --ok-bg: #e9f8f1;
-  --shadow: 0 1px 2px rgba(12, 35, 64, 0.04), 0 8px 24px rgba(12, 35, 64, 0.06);
+  /* Alternating section bands — kept far enough apart to read as rhythm, not a
+     flat field. Referenced by .sectionA/.sectionB and the inline page sections. */
+  --band-a: #f4f8fd;
+  --band-b: #d4e2f2;
+  /* Card elevation — deepened so cards sit ON the band instead of dissolving. */
+  --shadow: 0 1px 3px rgba(12, 35, 64, 0.07), 0 14px 30px rgba(12, 35, 64, 0.1);
   --shadow-lg: 0 2px 6px rgba(12, 35, 64, 0.06), 0 18px 50px rgba(12, 35, 64, 0.1);
   --font-disp: var(--font-display), "Space Grotesk", sans-serif;
   --font-text: var(--font-body), "Inter", sans-serif;
+  /* Second accent — a disciplined two-colour system: cyan = information/links,
+     indigo = action/commitment, navy = structure. Indigo is spent sparingly. */
+  --indigo: #5b6bf0;
+  --indigo-ink: #4250c8;
+  /* Brand focus ring (white spacer + cyan halo; reads on light bands & navy). */
+  --focus-ring: 0 0 0 2px #fff, 0 0 0 4px var(--cyan-ink);
 
   background: #fff;
   min-height: 100vh;
   font-family: var(--font-text);
   color: var(--slate);
   font-size: 14.5px;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .root * {
@@ -424,16 +435,14 @@
 /* ---------- Sections ---------- */
 .section {
   width: 100%;
-  background-image: radial-gradient(rgba(20, 58, 107, 0.07) 1px, transparent 1px);
-  background-size: 24px 24px;
 }
 
 .sectionA {
-  background-color: #e8f1fb;
+  background-color: var(--band-a);
 }
 
 .sectionB {
-  background-color: #d6e4f4;
+  background-color: var(--band-b);
 }
 
 .container {
@@ -457,8 +466,8 @@
   font-size: clamp(66px, 12vw, 140px);
   line-height: 0.8;
   letter-spacing: -0.05em;
-  color: rgba(56, 182, 255, 0.06);
-  -webkit-text-stroke: 1.6px rgba(56, 182, 255, 0.3);
+  color: rgba(91, 107, 240, 0.07);
+  -webkit-text-stroke: 1.6px rgba(91, 107, 240, 0.28);
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -495,7 +504,7 @@
 
 .secheadTitle {
   font-family: var(--font-disp);
-  font-size: clamp(26px, 3.6vw, 34px);
+  font-size: clamp(28px, 3.6vw, 36px);
   color: var(--navy);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -535,14 +544,14 @@
 
 /* ---------- Prose ---------- */
 .p {
-  font-size: 14.5px;
+  font-size: 15px;
   color: var(--slate);
   margin: 0 0 13px;
-  line-height: 1.62;
+  line-height: 1.6;
 }
 
 .pLead {
-  font-size: 15.5px;
+  font-size: 16px;
   color: var(--ink);
   margin: 0 0 13px;
   line-height: 1.62;
@@ -561,10 +570,10 @@
 
 .h3 {
   font-family: var(--font-disp);
-  font-size: 18px;
+  font-size: 19px;
   color: var(--navy);
   font-weight: 600;
-  margin: 26px 0 8px;
+  margin: 28px 0 8px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -617,8 +626,9 @@
 
 .infoboxTitle {
   font-family: var(--font-disp);
-  font-size: 14px;
-  margin: 0 0 4px;
+  font-size: 16px;
+  line-height: 1.3;
+  margin: 0 0 5px;
   color: var(--navy);
   font-weight: 600;
 }
@@ -700,7 +710,7 @@
 }
 
 .card {
-  background: linear-gradient(180deg, #fff, #edf4ff);
+  background: #fff;
   border: 1px solid #d6e3f1;
   border-radius: 14px;
   padding: 22px 24px;
@@ -713,7 +723,7 @@
 
 .cardTitle {
   font-family: var(--font-disp);
-  font-size: 15px;
+  font-size: 16px;
   color: var(--navy);
   font-weight: 600;
   margin: 0 0 7px;
@@ -1094,7 +1104,7 @@
 /* ---------- Lettered sub-headers ---------- */
 .subhead {
   font-family: var(--font-disp);
-  font-size: 17px;
+  font-size: 19px;
   color: var(--navy);
   font-weight: 600;
   margin: 24px 0 8px;
@@ -1131,7 +1141,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: linear-gradient(135deg, var(--cyan-deep), var(--cyan));
+  background: linear-gradient(135deg, var(--indigo), var(--cyan));
   color: #fff;
   font-family: var(--font-disp);
   font-weight: 600;
@@ -1190,7 +1200,7 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  background: linear-gradient(135deg, var(--cyan-deep), var(--cyan));
+  background: linear-gradient(135deg, var(--indigo), var(--cyan));
   color: #fff;
   font-family: var(--font-disp);
   font-weight: 600;
@@ -1199,9 +1209,11 @@
   border-radius: 11px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 8px 22px rgba(56, 182, 255, 0.32);
+  box-shadow: 0 8px 22px rgba(91, 107, 240, 0.3);
   white-space: nowrap;
-  transition: transform 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
 }
 
 .btnPrimary:hover {
@@ -1482,6 +1494,9 @@
 }
 
 .footerContact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 13px;
   color: #cfe0f0;
 }
@@ -1532,6 +1547,168 @@
 
 .footerLink:hover {
   color: var(--cyan);
+}
+
+/* ---------- Numerics & interaction states ---------- */
+/* Tabular lining figures so financial columns align digit-for-digit. */
+.tableNum,
+.tableTotalAmount,
+.totalValue,
+.trustNum,
+.bandStatNum,
+.guaranteeStatValue,
+.payAmount,
+.payPct,
+.coverBadgeValue,
+.secheadBigNum {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings:
+    "tnum" 1,
+    "lnum" 1;
+}
+
+/* One brand focus ring on every control — keyboard accessibility + craft. */
+.navLink:focus-visible,
+.mobileNavLink:focus-visible,
+.footerLink:focus-visible,
+.brand:focus-visible,
+.btnPrimary:focus-visible,
+.dlFab:focus-visible,
+.menuBtn:focus-visible,
+.signClearBtn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Press feedback on the action buttons. */
+.btnPrimary:active,
+.dlFab:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* ---------- Chapter band (dark full-bleed interstitial) ---------- */
+.band {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(160deg, #06152b, var(--navy) 52%, var(--navy-800));
+  color: #dde8f4;
+}
+
+.bandDots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(56, 182, 255, 0.1) 1px, transparent 1px);
+  background-size: 26px 26px;
+  pointer-events: none;
+}
+
+.bandGlow {
+  position: absolute;
+  top: -40%;
+  right: 2%;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle, rgba(56, 182, 255, 0.16), rgba(56, 182, 255, 0) 60%);
+  pointer-events: none;
+}
+
+.bandMark {
+  position: absolute;
+  right: 5%;
+  bottom: -52px;
+  font-size: 200px;
+  line-height: 1;
+  color: rgba(56, 182, 255, 0.08);
+  font-family: var(--font-disp);
+  font-weight: 700;
+  pointer-events: none;
+  user-select: none;
+}
+
+.bandInner {
+  position: relative;
+  z-index: 1;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: clamp(54px, 7vw, 86px) clamp(22px, 5vw, 48px);
+}
+
+.bandEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-disp);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.bandEyebrowBar {
+  width: 22px;
+  height: 2px;
+  background: var(--cyan);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(56, 182, 255, 0.7);
+}
+
+.bandTitle {
+  font-family: var(--font-disp);
+  color: #fff;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.13;
+  margin: 14px 0 0;
+  max-width: 24ch;
+}
+
+.bandTitleAccent {
+  background: linear-gradient(115deg, #9fd8ff, #38b6ff 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.bandSub {
+  margin: 16px 0 0;
+  color: #b9cce2;
+  font-size: clamp(14.5px, 1.6vw, 16px);
+  line-height: 1.62;
+  max-width: 60ch;
+}
+
+.bandStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: 22px 30px;
+  margin-top: 30px;
+}
+
+.bandStatNum {
+  font-family: var(--font-disp);
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 46px);
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.bandStatNum small {
+  font-size: 0.5em;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+.bandStatLabel {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #9fb6ce;
+  line-height: 1.4;
 }
 
 /* ---------- Mobile (max-width 640px) ---------- */
@@ -1656,46 +1833,78 @@
   }
 }
 
-/* ---------- Print (export to PDF) ---------- */
+/* ---------- Print (export to PDF — render the design in full colour) ---------- */
 @media print {
   @page {
-    margin: 11mm;
+    margin: 12mm;
   }
+  /* Browsers drop background colours/images when printing — opt back in so the
+     PDF matches the on-screen design exactly (navy cover, tinted bands, dark
+     bands & footer, cyan accents). Wins even if “Background graphics” is off. */
+  .root,
+  .root * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  /* Hide only the interactive chrome — it is not part of the document. */
   .header,
-  .footer,
+  .menuBtn,
+  .mobileMenu,
   .dlFab,
-  .dlBar {
+  .dlBar,
+  .footer {
     display: none !important;
   }
-  .root {
-    background: #fff !important;
-  }
-  .section {
-    background: #fff !important;
-    background-image: none !important;
-  }
-  .container {
-    max-width: 100% !important;
-    padding: 6mm 2mm !important;
-  }
-  .cover {
-    background: var(--navy) !important;
-  }
-  .reveal {
+  /* ScrollReveal hides below-the-fold blocks with inline opacity:0 until you
+     scroll to them. When printing you haven't scrolled the whole document, so
+     those blocks stay invisible and print as blank pages. Force everything
+     visible — !important beats the inline styles ScrollReveal sets. */
+  .reveal,
+  .root [data-dc-section] * {
     opacity: 1 !important;
     transform: none !important;
+    /* Kill the reveal transition so the block is fully visible in the snapshot
+       instead of caught mid-fade. */
+    transition: none !important;
+    animation: none !important;
   }
+
+  /* ----- Clean pagination: keep blocks whole, never split mid-element ----- */
+  /* Tighten the section rhythm a little so printed pages fill nicely. */
+  .container,
+  .root [data-dc-section] > div {
+    padding-top: 10mm !important;
+    padding-bottom: 10mm !important;
+  }
+  /* Keep a section header attached to the content that follows it. */
+  .sechead {
+    break-inside: avoid;
+    break-after: avoid;
+  }
+  /* A self-contained block that doesn't fit moves to the next page whole,
+     instead of being cut across the break. `[style*=box-shadow]` catches the
+     inline-styled cards on the Accueil/Cahier/Calendrier pages. */
+  .cover,
+  .band,
   .card,
   .payCard,
+  .infobox,
   .totalPanel,
   .guarantee,
   .signClient,
-  .signProvider {
-    box-shadow: none !important;
+  .signProvider,
+  .root [data-dc-section] [style*="box-shadow"] {
+    break-inside: avoid;
   }
-  .fieldInput {
-    border: none !important;
-    border-bottom: 1px solid #999 !important;
-    color: #000 !important;
+  /* Tables break only between rows, never through a row. */
+  .table thead,
+  .table tr {
+    break-inside: avoid;
+  }
+  /* No stranded single lines at the top/bottom of a page. */
+  .root p,
+  .root li {
+    orphans: 3;
+    widows: 3;
   }
 }

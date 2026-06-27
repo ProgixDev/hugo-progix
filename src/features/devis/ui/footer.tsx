@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { Icon } from "./icon";
 import { navLinks } from "./content";
 import styles from "./devis.module.css";
 
@@ -20,16 +21,20 @@ export function Footer({ heading, text }: { heading: string; text: string }) {
           <p className={styles.footerText}>{text}</p>
           <div className={styles.footerContacts}>
             <span className={styles.footerContact}>
-              ✉ <b>contact@progix.pro</b>
+              <Icon name="mail" size={16} style={{ color: "var(--cyan)" }} />
+              <b>contact@progix.pro</b>
             </span>
             <span className={styles.footerContact}>
-              ☎ <b>+1 514 576 5993</b>
+              <Icon name="phone" size={16} style={{ color: "var(--cyan)" }} />
+              <b>+1 514 576 5993</b>
             </span>
             <span className={styles.footerContact}>
-              🌐 <b>progix.pro</b>
+              <Icon name="globe" size={16} style={{ color: "var(--cyan)" }} />
+              <b>progix.pro</b>
             </span>
             <span className={styles.footerContact}>
-              📍 <b>Montréal, QC</b>
+              <Icon name="pin" size={16} style={{ color: "var(--cyan)" }} />
+              <b>Montréal, QC</b>
             </span>
           </div>
         </div>

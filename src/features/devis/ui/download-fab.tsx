@@ -1,5 +1,6 @@
 "use client";
 
+import { Icon } from "./icon";
 import styles from "./devis.module.css";
 
 /** Floating button that opens the browser print dialog (export to PDF). */
@@ -12,9 +13,7 @@ export function DownloadFab() {
       className={styles.dlFab}
       onClick={() => window.print()}
     >
-      <span className={styles.dlFabIcon} aria-hidden="true">
-        ⤓
-      </span>{" "}
+      <Icon name="download" size={16} />
       PDF
     </button>
   );
