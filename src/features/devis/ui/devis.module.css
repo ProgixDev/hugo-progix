@@ -54,9 +54,7 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(246, 249, 252, 0.86);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: #f6f9fc;
   border-bottom: 1px solid var(--line);
   transition:
     box-shadow 0.25s ease,
@@ -65,7 +63,7 @@
 
 .headerScrolled {
   box-shadow: 0 6px 22px rgba(12, 35, 64, 0.1);
-  background: rgba(246, 249, 252, 0.95);
+  background: #f6f9fc;
 }
 
 .headerInner {
@@ -179,9 +177,9 @@
 .mobileMenu {
   display: none;
   border-top: 1px solid var(--line);
-  background: rgba(246, 249, 252, 0.97);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Fully opaque so page text never shows through the open menu. */
+  background: #f6f9fc;
+  box-shadow: 0 14px 26px rgba(12, 35, 64, 0.12);
 }
 
 .mobileNav {

@@ -103,7 +103,6 @@ const team: ReadonlyArray<Member> = [
     tag: "FastAPI · React",
     img: "/team/houssem-ferrani.jpg",
   },
-  { init: "IN", bg: G_CY, nm: "Iheb Nsiri", ro: "Backend Engineer", tag: "Spring Boot · PHP" },
 ];
 
 type StackGroup = { h: string; items: ReadonlyArray<string> };
