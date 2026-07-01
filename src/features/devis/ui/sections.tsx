@@ -132,7 +132,7 @@ export function BodySections() {
           <div className={cn(styles.totalPanel, styles.lift)}>
             <div className={styles.totalPanelInner}>
               <span className={styles.totalArrow} aria-hidden="true">
-                ↗
+                —
               </span>
               <div className={styles.totalEyebrow}>Montant total · forfait fixe</div>
               <div className={styles.totalValue}>4 950 €</div>
@@ -228,7 +228,7 @@ export function BodySections() {
           </div>
           <div className={styles.guarantee}>
             <span className={styles.guaranteeArrow} aria-hidden="true">
-              ↗
+              —
             </span>
             <span className={styles.guaranteeEyebrow}>
               <span className={styles.guaranteeEyebrowBar} aria-hidden="true" />
